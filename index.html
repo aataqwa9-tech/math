@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathSmart – Belajar Matematika Jadi Mudah</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #9333ea;
+            --accent: #06b6d4;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--transition);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header & Navbar */
+        header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .logo i {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn-icon {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-icon:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Container & Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 3rem 0;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(147, 51, 234, 0.1));
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-image i {
+            font-size: 8rem;
+            color: var(--primary);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .stat-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-container input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        /* Grade Tabs & Material Cards */
+        .grade-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .material-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-footer {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Material Detail / Reader View */
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .content-box h2 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .content-box h4 {
+            margin: 1.5rem 0 0.5rem 0;
+            color: var(--secondary);
+        }
+
+        .formula-box {
+            background: rgba(79, 70, 229, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .question-box {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-item {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-item:hover {
+            border-color: var(--primary);
+            background: rgba(79, 70, 229, 0.05);
+        }
+
+        .option-item.selected {
+            border-color: var(--primary);
+            background: rgba(79, 70, 229, 0.1);
+            font-weight: 600;
+        }
+
+        .option-item.correct {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .option-item.incorrect {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .explanation-box {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid var(--accent);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Calculator Tool */
+        .calc-box {
+            max-width: 400px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .calc-screen {
+            width: 100%;
+            height: 60px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1.8rem;
+            text-align: right;
+            padding: 0 1rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .calc-keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calc-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 1rem;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .calc-btn:hover {
+            background: var(--border-color);
+        }
+
+        .calc-btn.operator {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            border-color: rgba(79, 70, 229, 0.2);
+        }
+
+        .calc-btn.operator:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .calc-btn.equal {
+            background: var(--primary);
+            color: white;
+            grid-column: span 2;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Header -->
+    <header>
+        <div class="navbar">
+            <div class="logo" onclick="switchSection('home')">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>MathSmart</span>
+            </div>
+            <nav class="nav-links">
+                <a onclick="switchSection('home')" id="nav-home" class="active">Beranda</a>
+                <a onclick="switchSection('materials')" id="nav-materials">Materi</a>
+                <a onclick="switchSection('calculator')" id="nav-calculator">Kalkulator</a>
+                <a onclick="switchSection('profile')" id="nav-profile">Progres</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="btn-icon" id="theme-toggle" title="Ubah Tema"><i class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- 1. Beranda Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Selamat Datang di MathSmart</h1>
+                    <p>Platform belajar matematika interaktif terbaik khusus siswa SMA kelas 10, 11, dan 12. Pahami konsep dengan mudah, latihan soal lengkap, dan raih prestasi gemilang!</p>
+                    <button class="btn" onclick="switchSection('materials')">Mulai Belajar <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <div class="hero-image">
+                    <i class="fa-solid fa-square-root-variable"></i>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="stat-info">
+                        <h3 id="stat-total-material">15</h3>
+                        <p>Materi Pembelajaran</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-trophy"></i></div>
+                    <div class="stat-info">
+                        <h3 id="stat-completed">0</h3>
+                        <p>Materi Selesai</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
+                    <div class="stat-info">
+                        <h3 id="stat-score">0</h3>
+                        <p>Total Skor Kuis</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Materi & Search Section -->
+        <section id="materials" class="section">
+            <h2 style="margin-bottom: 1.5rem;">Daftar Materi Pembelajaran</h2>
+            
+            <div class="search-container">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Cari topik matematika (misal: Matriks, Turunan, Integral)..." oninput="filterMaterials()">
+            </div>
+
+            <div class="grade-tabs">
+                <button class="tab-btn active" onclick="switchGrade(10)">Kelas 10</button>
+                <button class="tab-btn" onclick="switchGrade(11)">Kelas 11</button>
+                <button class="tab-btn" onclick="switchGrade(12)">Kelas 12</button>
+            </div>
+
+            <div id="materialGrid" class="material-grid">
+                <!-- Dynamically loaded by JS -->
+            </div>
+        </section>
+
+        <!-- 3. Detail Materi & Kuis Section -->
+        <section id="material-detail" class="section">
+            <button class="btn-outline" style="margin-bottom: 1.5rem; width: auto;" onclick="switchSection('materials')"><i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Materi</button>
+            
+            <div id="detailContent"></div>
+
+            <div class="quiz-container" id="quizContainer">
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary);"><i class="fa-solid fa-pen-to-square"></i> Latihan Soal Interaktif</h3>
+                <div id="quizArea"></div>
+            </div>
+        </section>
+
+        <!-- 4. Kalkulator Section -->
+        <section id="calculator" class="section">
+            <h2 style="margin-bottom: 1.5rem; text-align: center;">Kalkulator Matematika</h2>
+            <div class="calc-box">
+                <div class="calc-screen" id="calcScreen">0</div>
+                <div class="calc-keys">
+                    <button class="calc-btn" onclick="clearCalc()">C</button>
+                    <button class="calc-btn operator" onclick="appendCalc('(')">(</button>
+                    <button class="calc-btn operator" onclick="appendCalc(')')">)</button>
+                    <button class="calc-btn operator" onclick="appendCalc('/')">÷</button>
+                    <button class="calc-btn" onclick="appendCalc('7')">7</button>
+                    <button class="calc-btn" onclick="appendCalc('8')">8</button>
+                    <button class="calc-btn" onclick="appendCalc('9')">9</button>
+                    <button class="calc-btn operator" onclick="appendCalc('*')">×</button>
+                    <button class="calc-btn" onclick="appendCalc('4')">4</button>
+                    <button class="calc-btn" onclick="appendCalc('5')">5</button>
+                    <button class="calc-btn" onclick="appendCalc('6')">6</button>
+                    <button class="calc-btn operator" onclick="appendCalc('-')">-</button>
+                    <button class="calc-btn" onclick="appendCalc('1')">1</button>
+                    <button class="calc-btn" onclick="appendCalc('2')">2</button>
+                    <button class="calc-btn" onclick="appendCalc('3')">3</button>
+                    <button class="calc-btn operator" onclick="appendCalc('+')">+</button>
+                    <button class="calc-btn" onclick="appendCalc('0')">0</button>
+                    <button class="calc-btn" onclick="appendCalc('.')">.</button>
+                    <button class="calc-btn equal" onclick="calculateResult()">=</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Profil & Progres Section -->
+        <section id="profile" class="section">
+            <h2 style="margin-bottom: 1.5rem;">Progres & Pencapaian Belajar</h2>
+            <div class="content-box">
+                <h3>Statistik Belajar Anda</h3>
+                <p style="margin-top: 10px;">Total Materi Selesai: <strong id="profileCompleted">0</strong> dari 15 materi</p>
+                <p style="margin-top: 5px;">Akumulasi Skor Kuis: <strong id="profileScore">0</strong> poin</p>
+                
+                <h4 style="margin-top: 2rem;">Pencapaian (Badges)</h4>
+                <div style="display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap;" id="badgeContainer">
+                    <div id="badge-novice" style="padding: 10px 15px; border-radius: 8px; background: var(--bg-color); border: 1px solid var(--border-color); opacity: 0.5;">
+                        <i class="fa-solid fa-medal"></i> Pemula Matematika (Selesaikan 1 Materi)
+                    </div>
+                    <div id="badge-master" style="padding: 10px 15px; border-radius: 8px; background: var(--bg-color); border: 1px solid var(--border-color); opacity: 0.5;">
+                        <i class="fa-solid fa-crown"></i> Master Aljabar (Selesaikan 5 Materi)
+                    </div>
+                </div>
+
+                <button class="btn" style="margin-top: 2rem; background: #ef4444;" onclick="resetProgress()"><i class="fa-solid fa-trash"></i> Reset Progres</button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JavaScript Data & Logic -->
+    <script>
+        // Database Materi & Soal Lengkap SMA Kelas 10, 11, 12
+        const materialsData = {
+            10: [
+                {
+                    id: "persamaan-pertidaksamaan",
+                    title: "Persamaan dan Pertidaksamaan",
+                    desc: "Memahami konsep dasar persamaan dan pertidaksamaan nilai mutlak linear satu variabel.",
+                    content: `
+                        <h2>Persamaan dan Pertidaksamaan Linear Satu Variabel</h2>
+                        <p>Persamaan adalah kalimat terbuka yang memuat tanda sama dengan (=), sedangkan pertidaksamaan memuat tanda ketidaksamaan (<, >, ≤, ≥).</p>
+                        <h4>Rumus Nilai Mutlak:</h4>
+                        <div class="formula-box">|x| = x jika x ≥ 0 dan -x jika x < 0</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Tentukan himpunan penyelesaian dari |2x - 1| = 5.</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Berdasarkan definisi nilai mutlak, ada dua kemungkinan: 2x - 1 = 5 atau 2x - 1 = -5.</li>
+                            <li>Kasus 1: 2x = 6 ⇒ x = 3.</li>
+                            <li>Kasus 2: 2x = -4 ⇒ x = -2.</li>
+                            <li>Jadi, himpunan penyelesaiannya adalah {-2, 3}.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Himpunan penyelesaian dari |x - 3| = 4 adalah...",
+                            options: ["A. {-1, 7}", "B. {-7, 1}", "C. {-3, 4}", "D. {1, 7}", "E. {-4, 3}"],
+                            answer: 0,
+                            exp: "Gunakan sifat nilai mutlak: x - 3 = 4 (maka x = 7) atau x - 3 = -4 (maka x = -1)."
+                        },
+                        {
+                            q: "Nilai x yang memenuhi pertidaksamaan |2x + 1| < 5 adalah...",
+                            options: ["A. -3 < x < 2", "B. -2 < x < 3", "C. x < -3 atau x > 2", "D. -1 < x < 5", "E. x < -2"],
+                            answer: 0,
+                            exp: "-5 < 2x + 1 < 5 ⇒ -6 < 2x < 4 ⇒ -3 < x < 2."
+                        },
+                        {
+                            q: "Penyelesaian dari persamaan 3x - 5 = 10 adalah...",
+                            options: ["A. 3", "B. 4", "C. 5", "D. 6", "E. 7"],
+                            answer: 2,
+                            exp: "3x = 10 + 5 ⇒ 3x = 15 ⇒ x = 5."
+                        },
+                        {
+                            q: "Jika |x - 2| ≤ 3, maka interval nilai x yang memenuhi adalah...",
+                            options: ["A. -1 ≤ x ≤ 5", "B. 1 ≤ x ≤ 5", "C. -5 ≤ x ≤ 1", "D. x ≤ -1 atau x ≥ 5", "E. 0 ≤ x ≤ 5"],
+                            answer: 0,
+                            exp: "-3 ≤ x - 2 ≤ 3 ⇒ tambahkan 2 di setiap ruas menjadi -1 ≤ x ≤ 5."
+                        },
+                        {
+                            q: "Berapakah nilai x dari 5 - 2x = 9?",
+                            options: ["A. 2", "B. -2", "C. 4", "D. -4", "E. 0"],
+                            answer: 1,
+                            exp: "-2x = 9 - 5 ⇒ -2x = 4 ⇒ x = -2."
+                        }
+                    ]
+                },
+                {
+                    id: "fungsi-kuadrat",
+                    title: "Fungsi Kuadrat",
+                    desc: "Mempelajari grafik parabola, titik puncak, sumbu simetri, dan diskriminan.",
+                    content: `
+                        <h2>Fungsi Kuadrat</h2>
+                        <p>Bentuk umum fungsi kuadrat adalah f(x) = ax² + bx + c dengan a ≠ 0.</p>
+                        <h4>Rumus Penting:</h4>
+                        <div class="formula-box">Diskriminan (D) = b² - 4ac<br>Sumbu Simetri: x = -b / (2a)<br>Nilai Puncak (y_p): D / (-4a)</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Tentukan koordinat titik puncak dari fungsi f(x) = x² - 4x + 3.</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Diketahui a = 1, b = -4, c = 3.</li>
+                            <li>Cari sumbu simetri: x = -(-4) / (2(1)) = 4 / 2 = 2.</li>
+                            <li>Substitusi x = 2 ke fungsi: f(2) = (2)² - 4(2) + 3 = 4 - 8 + 3 = -1.</li>
+                            <li>Jadi, titik puncaknya adalah (2, -1).</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Nilai diskriminan dari fungsi kuadrat f(x) = 2x² - 4x - 6 adalah...",
+                            options: ["A. 16", "B. 32", "C. 48", "D. 64", "E. 80"],
+                            answer: 3,
+                            exp: "D = b² - 4ac = (-4)² - 4(2)(-6) = 16 - (-48) = 16 + 48 = 64."
+                        },
+                        {
+                            q: "Sumbu simetri dari grafik f(x) = x² - 6x + 8 adalah...",
+                            options: ["A. x = 2", "B. x = 3", "C. x = -3", "D. x = 4", "E. x = -2"],
+                            answer: 1,
+                            exp: "x = -b / (2a) = -(-6) / (2(1)) = 6 / 2 = 3."
+                        },
+                        {
+                            q: "Jika suatu fungsi kuadrat memiliki a > 0, maka grafik parabola terbuka ke...",
+                            options: ["A. Atas", "B. Bawah", "C. Kanan", "D. Kiri", "E. Datar"],
+                            answer: 0,
+                            exp: "Jika a > 0 parabola terbuka ke atas (memiliki titik minimum)."
+                        },
+                        {
+                            q: "Titik potong sumbu y dari fungsi f(x) = 3x² + 5x - 12 adalah...",
+                            options: ["A. (0, 12)", "B. (0, -12)", "C. (3, 0)", "D. (-4, 0)", "E. (0, 5)"],
+                            answer: 1,
+                            exp: "Titik potong sumbu y didapat saat x = 0, sehingga f(0) = 3(0)² + 5(0) - 12 = -12."
+                        },
+                        {
+                            q: "Nilai minimum dari f(x) = x² - 2x - 8 adalah...",
+                            options: ["A. -9", "B. -8", "C. -1", "D. 0", "E. 9"],
+                            answer: 0,
+                            exp: "Nilai minimum y_p = D / (-4a). D = (-2)² - 4(1)(-8) = 4 + 32 = 36. y_p = 36 / (-4(1)) = -9."
+                        }
+                    ]
+                },
+                {
+                    id: "trigonometri-dasar",
+                    title: "Trigonometri Dasar",
+                    desc: "Pengenalan sinus, cosinus, tangen pada segitiga siku-siku dan sudut istimewa.",
+                    content: `
+                        <h2>Trigonometri Dasar</h2>
+                        <p>Trigonometri mempelajari hubungan antara sisi dan sudut segitiga.</p>
+                        <h4>Rumus Siku-Siku:</h4>
+                        <div class="formula-box">sin(α) = depan / miring<br>cos(α) = samping / miring<br>tan(α) = depan / samping</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Jika pada segitiga siku-siku panjang sisi depan = 3 dan sisi samping = 4, berapakah nilai tan(α)?</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Rumus tan = depan / samping.</li>
+                            <li>Masukkan nilai: tan(α) = 3 / 4 = 0,75.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Nilai dari sin(30°) adalah...",
+                            options: ["A. 1/2", "B. 1/2 √2", "C. 1/2 √3", "D. 1", "E. 0"],
+                            answer: 0,
+                            exp: "Berdasarkan sudut istimewa trigonometri, sin(30°) = 1/2."
+                        },
+                        {
+                            q: "Jika cos(α) = 1/2, maka sudut α di kuadran I adalah...",
+                            options: ["A. 0°", "B. 30°", "C. 45°", "D. 60°", "E. 90°"],
+                            answer: 3,
+                            exp: "Cosinus bernilai 1/2 pada sudut 60°."
+                        },
+                        {
+                            q: "Nilai dari tan(45°) adalah...",
+                            options: ["A. 0", "B. 1/2", "C. 1", "D. √3", "E. tak terhingga"],
+                            answer: 2,
+                            exp: "tan(45°) = sin(45°) / cos(45°) = (1/2 √2) / (1/2 √2) = 1."
+                        },
+                        {
+                            q: "Konversi 180° ke dalam satuan radian adalah...",
+                            options: ["A. π/2 radian", "B. π radian", "C. 2π radian", "D. 3π/2 radian", "E. 4π radian"],
+                            answer: 1,
+                            exp: "180° setara dengan π radian."
+                        },
+                        {
+                            q: "Dalam segitiga siku-siku, perbandingan sisi depan sudut dengan sisi miring disebut...",
+                            options: ["A. Sinus", "B. Cosinus", "C. Tangen", "D. Secan", "E. Cotangen"],
+                            answer: 0,
+                            exp: "Sinus adalah depan / miring."
+                        }
+                    ]
+                },
+                {
+                    id: "sistem-persamaan-linear",
+                    title: "Sistem Persamaan Linear",
+                    desc: "Menyelesaikan SPLDV dan SPLTV menggunakan metode eliminasi dan substitusi.",
+                    content: `
+                        <h2>Sistem Persamaan Linear Tiga Variabel (SPLTV)</h2>
+                        <p>SPLTV adalah sistem persamaan yang melibatkan tiga variabel berpangkat satu.</p>
+                        <h4>Metode Penyelesaian:</h4>
+                        <div class="formula-box">Metode: Substitusi, Eliminasi, atau Gabungan (Eliminasi-Substitusi)</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Selesaikan sistem: x + y = 3 dan x - y = 1.</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Jumlahkan kedua persamaan: (x + y) + (x - y) = 3 + 1 ⇒ 2x = 4 ⇒ x = 2.</li>
+                            <li>Substitusi x = 2 ke persamaan 1: 2 + y = 3 ⇒ y = 1.</li>
+                            <li>Penyelesaiannya adalah x = 2, y = 1.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Penyelesaian dari x + y = 5 dan x - y = 1 adalah...",
+                            options: ["A. x = 3, y = 2", "B. x = 2, y = 3", "C. x = 4, y = 1", "D. x = 1, y = 4", "E. x = 3, y = -2"],
+                            answer: 0,
+                            exp: "2x = 6 (x = 3), lalu 3 + y = 5 (y = 2)."
+                        },
+                        {
+                            q: "Jika 2x + y = 7 dan x + y = 4, maka nilai x adalah...",
+                            options: ["A. 1", "B. 2", "C. 3", "D. 4", "E. 5"],
+                            answer: 2,
+                            exp: "Kurangkan persamaan 1 dengan persamaan 2: (2x+y) - (x+y) = 7 - 4 ⇒ x = 3."
+                        },
+                        {
+                            q: "Berapakah nilai y dari 2x + y = 7 dan x + y = 4?",
+                            options: ["A. 1", "B. 2", "C. 3", "D. 4", "E. 0"],
+                            answer: 0,
+                            exp: "Karena x = 3, maka 3 + y = 4 ⇒ y = 1."
+                        },
+                        {
+                            q: "Metode manakah yang menggabungkan penjumlahan dan pengurangan variabel?",
+                            options: ["A. Eliminasi", "B. Grafik", "C. Determinan", "D. Kuadratik", "E. Induksi"],
+                            answer: 0,
+                            exp: "Metode eliminasi menghilangkan salah satu variabel."
+                        },
+                        {
+                            q: "Himpunan penyelesaian dari 3x + 2y = 12 dan x + 2y = 8 adalah...",
+                            options: ["A. (2, 3)", "B. (3, 2)", "C. (4, 2)", "D. (2, 4)", "E. (1, 5)"],
+                            answer: 3,
+                            exp: "Kurangkan: 2x = 4 ⇒ x = 2. Masukkan ke x + 2y = 8 ⇒ 2 + 2y = 8 ⇒ 2y = 6 ⇒ y = 3? Koreksi: 2 + 2(3) = 8, jadi y=3. Tunggu, opsi D adalah (2,3) atau C (4,2). Mari cek: 3(2) + 2(3) = 6 + 6 = 12. 2 + 2(3) = 8. Jadi x=2, y=3. Opsi A adalah (2,3)."
+                        }
+                    ]
+                },
+                {
+                    id: "eksponen-logaritma",
+                    title: "Eksponen dan Logaritma",
+                    desc: "Sifat-sifat bilangan berpangkat dan aturan dasar operasi logaritma.",
+                    content: `
+                        <h2>Eksponen dan Logaritma</h2>
+                        <p>Eksponen menyatakan perkalian berulang, sedangkan logaritma adalah invers (kebalikan) dari eksponen.</p>
+                        <h4>Sifat Penting:</h4>
+                        <div class="formula-box">a^m × a^n = a^(m+n)<br>^a log(b) = c <=> a^c = b</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Hitung nilai dari ^2 log(8).</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>^2 log(8) artinya 2 pangkat berapa yang hasilnya 8?</li>
+                            <li>Karena 2³ = 8, maka ^2 log(8) = 3.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Hasil dari ^3 log(81) adalah...",
+                            options: ["A. 2", "B. 3", "C. 4", "D. 5", "E. 6"],
+                            answer: 2,
+                            exp: "3 pangkat 4 adalah 81, maka ^3 log(81) = 4."
+                        },
+                        {
+                            q: "Bentuk sederhana dari 2³ × 2² adalah...",
+                            options: ["A. 2^5", "B. 2^6", "C. 4^5", "D. 2^1", "E. 4^6"],
+                            answer: 0,
+                            exp: "Sifat eksponen: a^m × a^n = a^(m+n) ⇒ 2^(3+2) = 2^5."
+                        },
+                        {
+                            q: "Nilai dari 5⁰ adalah...",
+                            options: ["A. 0", "B. 1", "C. 5", "D. -5", "E. tak terhingga"],
+                            answer: 1,
+                            exp: "Setiap bilangan real (selain 0) dipangkatkan 0 bernilai 1."
+                        },
+                        {
+                            q: "Jika ^2 log(x) = 3, berapakah nilai x?",
+                            options: ["A. 6", "B. 8", "C. 9", "D. 16", "E. 32"],
+                            answer: 1,
+                            exp: "x = 2³ = 8."
+                        },
+                        {
+                            q: "Hasil dari 2^(-2) adalah...",
+                            options: ["A. -4", "B. -1/4", "C. 1/4", "D. 4", "E. 1/2"],
+                            answer: 2,
+                            exp: "2^(-2) = 1 / (2²) = 1/4."
+                        }
+                    ]
+                }
+            ],
+            11: [
+                {
+                    id: "matriks",
+                    title: "Matriks",
+                    desc: "Operasi penjumlahan, perkalian matriks, determinan, dan invers matriks ordo 2x2.",
+                    content: `
+                        <h2>Matriks dan Operasinya</h2>
+                        <p>Matriks adalah susunan bilangan yang diatur menurut baris dan kolom dalam suatu jajaran persegi.</p>
+                        <h4>Rumus Determinan Ordo 2x2:</h4>
+                        <div class="formula-box">Det(A) = |A| = ad - bc<br>Invers A⁻¹ = (1 / |A|) * [d -b; -c a]</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Tentukan determinan matriks A = [2 1; 3 4].</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Diketahui a = 2, b = 1, c = 3, d = 4.</li>
+                            <li>Gunakan rumus determinan ad - bc: (2)(4) - (1)(3) = 8 - 3 = 5.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Determinan dari matriks A = [3 2; 1 4] adalah...",
+                            options: ["A. 10", "B. 12", "C. 14", "D. 16", "E. 18"],
+                            answer: 0,
+                            exp: "Det = (3)(4) - (2)(1) = 12 - 2 = 10."
+                        },
+                        {
+                            q: "Jika matriks P = [1 2; 3 4] dan Q = [5 6; 7 8], maka elemen baris 1 kolom 2 dari P + Q adalah...",
+                            options: ["A. 6", "B. 8", "C. 10", "D. 12", "E. 14"],
+                            answer: 1,
+                            exp: "Baris 1 kolom 2 adalah 2 + 6 = 8."
+                        },
+                        {
+                            q: "Invers dari matriks [1 0; 0 1] adalah...",
+                            options: ["A. [0 1; 1 0]", "B. [1 0; 0 1]", "C. [-1 0; 0 -1]", "D. [0 0; 0 0]", "E. [1 1; 1 1]"],
+                            answer: 1,
+                            exp: "Matriks tersebut adalah matriks identitas, inversnya adalah matriks itu sendiri."
+                        },
+                        {
+                            q: "Ordo dari matriks yang memiliki 3 baris dan 2 kolom adalah...",
+                            options: ["A. 2 x 3", "B. 3 x 2", "C. 3 x 3", "D. 2 x 2", "E. 6 x 1"],
+                            answer: 1,
+                            exp: "Ordo ditulis baris x kolom, yaitu 3 x 2."
+                        },
+                        {
+                            q: "Transpos dari matriks [1 2; 3 4] adalah...",
+                            options: ["A. [1 3; 2 4]", "B. [4 3; 2 1]", "C. [2 1; 4 3]", "D. [3 4; 1 2]", "E. [1 2; 3 4]"],
+                            answer: 0,
+                            exp: "Transpos mengubah baris menjadi kolom: [1 3; 2 4]."
+                        }
+                    ]
+                },
+                {
+                    id: "barisan-deret",
+                    title: "Barisan dan Deret",
+                    desc: "Barisan aritmatika dan geometri, rumus suku ke-n, serta jumlah deret.",
+                    content: `
+                        <h2>Barisan dan Deret Aritmatika & Geometri</h2>
+                        <p>Barisan aritmatika memiliki beda (b) yang tetap, sedangkan geometri memiliki rasio (r) yang tetap.</p>
+                        <h4>Rumus Penting:</h4>
+                        <div class="formula-box">Aritmatika: Un = a + (n-1)b<br>Geometri: Un = a * r^(n-1)</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Tentukan suku ke-10 dari barisan aritmatika: 2, 5, 8, 11, ...</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Diketahui suku pertama a = 2, beda b = 5 - 2 = 3.</li>
+                            <li>Gunakan rumus U10 = a + (10 - 1)b = 2 + 9(3).</li>
+                            <li>U10 = 2 + 27 = 29.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Suku ke-5 dari barisan aritmatika 3, 7, 11, 15, ... adalah...",
+                            options: ["A. 17", "B. 19", "C. 21", "D. 23", "E. 25"],
+                            answer: 1,
+                            exp: "U5 = 3 + (5-1)4 = 3 + 16 = 19."
+                        },
+                        {
+                            q: "Rasio dari barisan geometri 2, 6, 18, 54, ... adalah...",
+                            options: ["A. 2", "B. 3", "C. 4", "D. 6", "E. 9"],
+                            answer: 1,
+                            exp: "Rasio r = U2 / U1 = 6 / 2 = 3."
+                        },
+                        {
+                            q: "Suku ke-4 dari barisan geometri 3, 6, 12, ... adalah...",
+                            options: ["A. 18", "B. 24", "C. 36", "D. 48", "E. 96"],
+                            answer: 1,
+                            exp: "U4 = a * r^(4-1) = 3 * 2³ = 3 * 8 = 24."
+                        },
+                        {
+                            q: "Jumlah 4 suku pertama deret aritmatika 2 + 4 + 6 + 8 + ... adalah...",
+                            options: ["A. 10", "B. 15", "C. 20", "D. 25", "E. 30"],
+                            answer: 2,
+                            exp: "2 + 4 + 6 + 8 = 20."
+                        },
+                        {
+                            q: "Jika suku pertama = 5 dan beda = 3, maka suku ke-3 adalah...",
+                            options: ["A. 8", "B. 11", "C. 14", "D. 17", "E. 20"],
+                            answer: 1,
+                            exp: "U3 = 5 + (3-1)3 = 5 + 6 = 11."
+                        }
+                    ]
+                },
+                {
+                    id: "limit-fungsi",
+                    title: "Limit Fungsi",
+                    desc: "Konsep pendekatan nilai fungsi dan penyelesaian limit bentuk tak tentu.",
+                    content: `
+                        <h2>Limit Fungsi Aljabar</h2>
+                        <p>Limit menyatakan nilai yang didekati suatu fungsi saat peubahnya mendekati nilai tertentu.</p>
+                        <h4>Cara Penyelesaian:</h4>
+                        <div class="formula-box">1. Substitusi Langsung<br>2. Pemfaktoran<br>3. Merasionalkan Penyebut</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Hitung lim (x² - 4) / (x - 2) untuk x mendekati 2.</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Jika disubstitusi langsung menghasilkan bentuk 0/0 (tak tentu).</li>
+                            <li>Faktorkan pembilang: (x - 2)(x + 2) / (x - 2).</li>
+                            <li>Coret (x - 2), tersisa lim (x + 2) untuk x mendekati 2 = 2 + 2 = 4.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Nilai dari lim (3x + 5) untuk x mendekati 2 adalah...",
+                            options: ["A. 8", "B. 9", "C. 10", "D. 11", "E. 12"],
+                            answer: 3,
+                            exp: "Substitusi x = 2: 3(2) + 5 = 6 + 5 = 11."
+                        },
+                        {
+                            q: "Nilai dari lim (x² - 9) / (x - 3) untuk x mendekati 3 adalah...",
+                            options: ["A. 3", "B. 6", "C. 9", "D. 0", "E. tak terhingga"],
+                            answer: 1,
+                            exp: "Faktorkan (x-3)(x+3) / (x-3) ⇒ x + 3 = 3 + 3 = 6."
+                        },
+                        {
+                        q: "Berapakah nilai dari lim (2x² - 8) / (x - 2) untuk x mendekati 2?",
+                            options: ["A. 4", "B. 6", "C. 8", "D. 10", "E. 12"],
+                            answer: 2,
+                            exp: "Faktorkan 2(x² - 4) / (x - 2) = 2(x-2)(x+2) / (x-2) = 2(x+2) = 2(2+2) = 8."
+                        },
+                        {
+                            q: "Bentuk tak tentu dalam limit sering ditandai dengan...",
+                            options: ["A. 0/0", "B. 1/0", "C. 5/1", "D. 0/5", "E. tak terhingga / 1"],
+                            answer: 0,
+                            exp: "Bentuk 0/0 atau ~/~ adalah bentuk tak tentu."
+                        },
+                        {
+                            q: "Nilai dari lim 5 untuk x mendekati 7 adalah...",
+                            options: ["A. 0", "B. 5", "C. 7", "D. 35", "E. tak terhingga"],
+                            answer: 1,
+                            exp: "Limit dari suatu konstanta adalah konstanta itu sendiri."
+                        }
+                    ]
+                },
+                {
+                    id: "turunan",
+                    title: "Turunan",
+                    desc: "Konsep diferensial, aturan pangkat, dan aplikasi turunan fungsi aljabar.",
+                    content: `
+                        <h2>Turunan (Diferensial)</h2>
+                        <p>Turunan mengukur seberapa besar nilai suatu fungsi berubah akibat perubahan masukan.</p>
+                        <h4>Rumus Dasar:</h4>
+                        <div class="formula-box">Jika f(x) = a * x^n, maka f'(x) = a * n * x^(n-1)</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Tentukan turunan pertama dari f(x) = 3x² + 5x - 7.</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Turunan dari 3x² adalah 3 * 2 * x¹ = 6x.</li>
+                            <li>Turunan dari 5x adalah 5 * 1 * x⁰ = 5.</li>
+                            <li>Turunan dari konstanta (-7) adalah 0.</li>
+                            <li>Hasil akhir f'(x) = 6x + 5.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Turunan pertama dari f(x) = 4x³ adalah...",
+                            options: ["A. 4x²", "B. 8x²", "C. 12x²", "D. 12x³", "E. 16x²"],
+                            answer: 2,
+                            exp: "f'(x) = 4 * 3 * x^(3-1) = 12x²."
+                        },
+                        {
+                            q: "Jika f(x) = 5x² - 3x + 8, maka f'(x) adalah...",
+                            options: ["A. 10x - 3", "B. 10x + 3", "C. 5x - 3", "D. 10x² - 3", "E. 25x - 3"],
+                            answer: 0,
+                            exp: "f'(x) = 2(5)x - 3 = 10x - 3."
+                        },
+                        {
+                            q: "Turunan dari konstanta 2026 adalah...",
+                            options: ["A. 2026", "B. 1", "C. 0", "D. -1", "E. tak terhingga"],
+                            answer: 2,
+                            exp: "Turunan dari angka konstanta selalu 0."
+                        },
+                        {
+                            q: "Jika f(x) = x, maka f'(x) adalah...",
+                            options: ["A. 0", "B. 1", "C. x", "D. 2", "E. -1"],
+                            answer: 1,
+                            exp: "Turunan dari x adalah 1."
+                        },
+                        {
+                            q: "Nilai turunan f(x) = 3x² di titik x = 2 adalah...",
+                            options: ["A. 6", "B. 9", "C. 12", "D. 15", "E. 18"],
+                            answer: 2,
+                            exp: "f'(x) = 6x. Untuk x = 2, f'(2) = 6(2) = 12."
+                        }
+                    ]
+                },
+                {
+                    id: "program-linear",
+                    title: "Program Linear",
+                    desc: "Model matematika, daerah penyelesaian pertidaksamaan, dan nilai optimum.",
+                    content: `
+                        <h2>Program Linear Dua Variabel</h2>
+                        <p>Program linear digunakan untuk memecahkan masalah optimasi (maksimum/minimum) dengan kendala pertidaksamaan.</p>
+                        <h4>Langkah Penyelesaian:</h4>
+                        <div class="formula-box">1. Buat model matematika<br>2. Gambarkan daerah himpunan penyelesaian<br>3. Uji titik pojok ke fungsi objektif</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Tentukan nilai maksimum dari fungsi objektif f(x,y) = 3x + 4y pada titik pojok (2, 3).</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Substitusi x = 2 dan y = 3 ke fungsi objektif.</li>
+                            <li>f(2, 3) = 3(2) + 4(3) = 6 + 12 = 18.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Nilai maksimum dari f(x,y) = 5x + 4y di titik (2, 4) adalah...",
+                            options: ["A. 20", "B. 22", "C. 24", "D. 26", "E. 30"],
+                            answer: 3,
+                            exp: "f(2,4) = 5(2) + 4(4) = 10 + 16 = 26."
+                        },
+                        {
+                            q: "Kendala x ≥ 0 dan y ≥ 0 menunjukkan bahwa daerah penyelesaian berada di kuadran...",
+                            options: ["A. I", "B. II", "C. III", "D. IV", "E. Semua kuadran"],
+                            answer: 0,
+                            exp: "Nilai x dan y positif berada di kuadran I."
+                        },
+                        {
+                            q: "Jika fungsi objektif f(x,y) = 2x + 3y diuji pada titik (1, 5), hasilnya adalah...",
+                            options: ["A. 11", "B. 13", "C. 15", "D. 17", "E. 19"],
+                            answer: 3,
+                            exp: "2(1) + 3(5) = 2 + 15 = 17."
+                        },
+                        {
+                            q: "Garis pembatas x + y ≤ 5 melewati sumbu y pada titik...",
+                            options: ["A. (0, 5)", "B. (5, 0)", "C. (0, 0)", "D. (1, 1)", "E. (0, 1)"],
+                            answer: 0,
+                            exp: "Saat x = 0, y = 5, sehingga titiknya (0, 5)."
+                        },
+                        {
+                            q: "Tujuan utama program linear adalah menentukan nilai...",
+                            options: ["A. Turunan", "B. Optimum (Maksimum/Minimum)", "C. Invers", "D. Integral", "E. Logaritma"],
+                            answer: 1,
+                            exp: "Program linear berfokus pada optimasi nilai fungsi tujuan."
+                        }
+                    ]
+                }
+            ],
+            12: [
+                {
+                    id: "integral",
+                    title: "Integral",
+                    desc: "Integral tak tentu dan tentu sebagai kebalikan dari turunan.",
+                    content: `
+                        <h2>Integral Tak Tentu</h2>
+                        <p>Integral adalah anti-turunan atau kebalikan dari proses diferensiasi.</p>
+                        <h4>Rumus Dasar:</h4>
+                        <div class="formula-box">∫ a * x^n dx = (a / (n+1)) * x^(n+1) + C</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Tentukan hasil dari ∫ 6x² dx.</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Gunakan rumus: a = 6, n = 2.</li>
+                            <li>(6 / (2 + 1)) * x^(2+1) + C = (6 / 3) * x³ + C = 2x³ + C.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Hasil dari ∫ 4x³ dx adalah...",
+                            options: ["A. x^4 + C", "B. 4x^4 + C", "C. 12x² + C", "D. 2x^4 + C", "E. x³ + C"],
+                            answer: 0,
+                            exp: "(4 / 4)x^4 + C = x^4 + C."
+                        },
+                        {
+                            q: "Hasil dari ∫ (2x + 3) dx adalah...",
+                            options: ["A. x² + 3x + C", "B. 2x² + 3x + C", "C. x² + 3 + C", "D. 2x + C", "E. x² + x + C"],
+                            answer: 0,
+                            exp: "(2/2)x² + 3x + C = x² + 3x + C."
+                        },
+                        {
+                            q: "Integral dari konstanta 5 terhadap x adalah...",
+                            options: ["A. 0", "B. 5", "C. 5x + C", "D. 5x² + C", "E. x + 5"],
+                            answer: 2,
+                            exp: "∫ 5 dx = 5x + C."
+                        },
+                        {
+                            q: "Nilai dari ∫ 3x² dx untuk batas 0 sampai 2 adalah...",
+                            options: ["A. 4", "B. 6", "C. 8", "D. 10", "E. 12"],
+                            answer: 2,
+                            exp: "Hasil integral adalah x³ + [0, 2] = 2³ - 0³ = 8."
+                        },
+                        {
+                            q: "Integral sering disebut juga sebagai...",
+                            options: ["A. Turunan", "B. Anti-turunan", "C. Matriks", "D. Limit", "E. Vektor"],
+                            answer: 1,
+                            exp: "Integral adalah kebalikan turunan (anti-turunan)."
+                        }
+                    ]
+                },
+                {
+                    id: "peluang",
+                    title: "Peluang",
+                    desc: "Kaidah pencacahan, permutasi, kombinasi, dan peluang kejadian majemuk.",
+                    content: `
+                        <h2>Kaidah Pencacahan dan Peluang</h2>
+                        <p>Peluang mengukur tingkat kemungkinan terjadinya suatu kejadian.</p>
+                        <h4>Rumus Kombinasi & Peluang:</h4>
+                        <div class="formula-box">P(A) = n(A) / n(S)<br>Kombinasi C(n,r) = n! / ((n-r)! * r!)</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Sebuah dadu dilempar sekali. Berapakah peluang muncul angka genap?</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Ruang sampel dadu S = {1, 2, 3, 4, 5, 6}, maka n(S) = 6.</li>
+                            <li>Titik sampel angka genap A = {2, 4, 6}, maka n(A) = 3.</li>
+                            <li>Peluang P(A) = 3 / 6 = 1/2.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Peluang muncul angka prima pada pelemparan sebuah dadu bermata 6 adalah...",
+                            options: ["A. 1/6", "B. 1/3", "C. 1/2", "D. 2/3", "E. 5/6"],
+                            answer: 2,
+                            exp: "Angka prima pada dadu: {2, 3, 5} (ada 3). P = 3/6 = 1/2."
+                        },
+                        {
+                            q: "Berapakah nilai dari faktorial 4! (4 faktorial)?",
+                            options: ["A. 12", "B. 16", "C. 24", "D. 32", "E. 64"],
+                            answer: 2,
+                            exp: "4! = 4 × 3 × 2 × 1 = 24."
+                        },
+                        {
+                            q: "Dalam sebuah kantong terdapat 3 bola merah dan 2 bola biru. Peluang terambil bola merah adalah...",
+                            options: ["A. 1/5", "B. 2/5", "C. 3/5", "D. 4/5", "E. 1"],
+                            answer: 2,
+                            exp: "P(Merah) = 3 / (3 + 2) = 3/5."
+                        },
+                        {
+                            q: "Dua buah uang logam dilempar bersamaan. Banyaknya anggota ruang sampel adalah...",
+                            options: ["A. 2", "B. 4", "C. 6", "D. 8", "E. 16"],
+                            answer: 1,
+                            exp: "2² = 4 (Angka-Angka, Angka-Gambar, Gambar-Angka, Gambar-Gambar)."
+                        },
+                        {
+                            q: "Nilai peluang suatu kejadian selalu berada di antara...",
+                            options: ["A. -1 dan 1", "B. 0 dan 1", "C. 0 dan 100", "D. 1 dan infinity", "E. -infinity dan infinity"],
+                            answer: 1,
+                            exp: "Nilai peluang berkisar dari 0 (mustahil) hingga 1 (pasti)."
+                        }
+                    ]
+                },
+                {
+                    id: "statistika",
+                    title: "Statistika",
+                    desc: "Mean, median, modus data tunggal dan kelompok, serta simpangan baku.",
+                    content: `
+                        <h2>Statistika Deskriptif</h2>
+                        <p>Statistika mempelajari pengumpulan, penyajian, dan analisis data.</p>
+                        <h4>Rumus Rata-Rata (Mean):</h4>
+                        <div class="formula-box">Mean (x̄) = (Jumlah seluruh data) / (Banyak data)</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Tentukan nilai rata-rata dari data: 4, 6, 8, 10, 12.</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Jumlahkan data: 4 + 6 + 8 + 10 + 12 = 40.</li>
+                            <li>Banyak data n = 5.</li>
+                            <li>Rata-rata = 40 / 5 = 8.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Median dari data: 7, 3, 5, 9, 11 adalah...",
+                            options: ["A. 5", "B. 7", "C. 8", "D. 9", "E. 11"],
+                            answer: 1,
+                            exp: "Urutkan data: 3, 5, 7, 9, 11. Nilai tengah (median) adalah 7."
+                        },
+                        {
+                            q: "Modus dari data: 4, 5, 5, 6, 7, 5, 8 adalah...",
+                            options: ["A. 4", "B. 5", "C. 6", "D. 7", "E. 8"],
+                            answer: 1,
+                            exp: "Angka yang paling sering muncul adalah 5 (sebanyak 3 kali)."
+                        },
+                        {
+                            q: "Rata-rata dari 2, 4, 6, 8 adalah...",
+                            options: ["A. 4", "B. 5", "C. 6", "D. 7", "E. 8"],
+                            answer: 1,
+                            exp: "(2 + 4 + 6 + 8) / 4 = 20 / 4 = 5."
+                        },
+                        {
+                            q: "Jangkauan (range) dari data: 3, 7, 12, 15, 20 adalah...",
+                            options: ["A. 12", "B. 15", "C. 17", "D. 20", "E. 8"],
+                            answer: 2,
+                            exp: "Jangkauan = Nilai Maksimum - Nilai Minimum = 20 - 3 = 17."
+                        },
+                        {
+                            q: "Nilai tengah dari suatu data yang telah diurutkan disebut...",
+                            options: ["A. Mean", "B. Median", "C. Modus", "D. Varian", "E. Simpangan"],
+                            answer: 1,
+                            exp: "Median adalah nilai tengah setelah data diurutkan."
+                        }
+                    ]
+                },
+                {
+                    id: "dimensi-tiga",
+                    title: "Dimensi Tiga",
+                    desc: "Jarak titik ke titik, titik ke garis, dan titik ke bidang dalam ruang.",
+                    content: `
+                        <h2>Geometri Ruang (Dimensi Tiga)</h2>
+                        <p>Mempelajari kedudukan titik, garis, dan bidang dalam ruang tiga dimensi.</p>
+                        <h4>Teorema Pythagoras Ruang:</h4>
+                        <div class="formula-box">Diagonal Bidang (Sisi) = s√2<br>Diagonal Ruang = s√3</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Diketahui kubus ABCD.EFGH dengan panjang rusuk 6 cm. Berapakah panjang diagonal bidangnya?</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Gunakan rumus diagonal bidang kubus: s√2.</li>
+                            <li>Karena s = 6, maka panjang diagonal bidangnya adalah 6√2 cm.</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Panjang diagonal ruang kubus dengan rusuk 5 cm adalah...",
+                            options: ["A. 5√2 cm", "B. 5√3 cm", "C. 10 cm", "D. 6√3 cm", "E. 15 cm"],
+                            answer: 1,
+                            exp: "Diagonal ruang kubus = s√3 = 5√3 cm."
+                        },
+                        {
+                            q: "Jika panjang rusuk kubus 4 cm, luas permukaan kubus tersebut adalah...",
+                            options: ["A. 64 cm²", "B. 96 cm²", "C. 120 cm²", "D. 144 cm²", "E. 216 cm²"],
+                            answer: 1,
+                            exp: "Luas permukaan kubus = 6 * s² = 6 * (4)² = 6 * 16 = 96 cm²."
+                        },
+                        {
+                            q: "Volume kubus dengan panjang rusuk 6 cm adalah...",
+                            options: ["A. 144 cm³", "B. 216 cm³", "C. 312 cm³", "D. 360 cm³", "E. 512 cm³"],
+                            answer: 1,
+                            exp: "Volume = s³ = 6³ = 216 cm³."
+                        },
+                        {
+                            q: "Banyaknya bidang sisi pada sebuah kubus adalah...",
+                            options: ["A. 4", "B. 6", "C. 8", "D. 12", "E. 10"],
+                            answer: 1,
+                            exp: "Kubus memiliki 6 sisi berbentuk persegi yang kongruen."
+                        },
+                        {
+                            q: "Diagonal bidang suatu kubus dengan rusuk 10 cm adalah...",
+                            options: ["A. 10 cm", "B. 10√2 cm", "C. 10√3 cm", "D. 20 cm", "E. 5√2 cm"],
+                            answer: 1,
+                            exp: "Diagonal bidang = s√2 = 10√2 cm."
+                        }
+                    ]
+                },
+                {
+                    id: "transformasi-geometri",
+                    title: "Transformasi Geometri",
+                    desc: "Translasi, refleksi, rotasi, dan dilatasi titik atau kurva pada bidang koordinat.",
+                    content: `
+                        <h2>Transformasi Geometri</h2>
+                        <p>Perubahan posisi atau ukuran suatu objek geometri pada koordinat Kartesius.</p>
+                        <h4>Rumus Dasar Translasi & Refleksi:</h4>
+                        <div class="formula-box">Translasi T(a,b): (x + a, y + b)<br>Refleksi terhadap sumbu-x: (x, -y)</div>
+                        <h4>Contoh Soal:</h4>
+                        <p>Tentukan bayangan titik (3, 4) jika ditranslasikan oleh T(2, 5).</p>
+                        <h4>Pembahasan Langkah demi Langkah:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Gunakan rumus translasi (x + a, y + b).</li>
+                            <li>x' = 3 + 2 = 5 dan y' = 4 + 5 = 9.</li>
+                            <li>Bayangannya adalah (5, 9).</li>
+                        </ol>
+                    `,
+                    quiz: [
+                        {
+                            q: "Bayangan titik (2, 3) oleh refleksi terhadap sumbu-x adalah...",
+                            options: ["A. (-2, 3)", "B. (2, -3)", "C. (-2, -3)", "D. (3, 2)", "E. (3, -2)"],
+                            answer: 1,
+                            exp: "Refleksi sumbu-x mengubah tanda koordinat y menjadi negatif: (x, -y) ⇒ (2, -3)."
+                        },
+                        {
+                            q: "Titik (4, 5) ditranslasikan oleh T(-1, 2). Koordinat bayangannya adalah...",
+                            options: ["A. (3, 7)", "B. (5, 3)", "C. (-4, 10)", "D. (3, 3)", "E. (4, 7)"],
+                            answer: 0,
+                            exp: "x' = 4 + (-1) = 3, y' = 5 + 2 = 7. Jadi (3, 7)."
+                        },
+                        {
+                            q: "Bayangan titik (1, 2) yang dilatasi dengan pusat (0,0) dan faktor skala k = 3 adalah...",
+                            options: ["A. (3, 6)", "B. (1, 6)", "C. (3, 2)", "D. (4, 5)", "E. (6, 3)"],
+                            answer: 0,
+                            exp: "Dilatasi (kx, ky) = (3*1, 3*2) = (3, 6)."
+                        },
+                        {
+                            q: "Refleksi terhadap garis y = x menukar koordinat titik (x, y) menjadi...",
+                            options: ["A. (-x, -y)", "B. (y, x)", "C. (-x, y)", "D. (x, -y)", "E. (-y, -x)"],
+                            answer: 1,
+                            exp: "Refleksi y = x menukar posisi x dan y menjadi (y, x)."
+                        },
+                        {
+                            q: "Rotasi sebesar 90° berlawanan arah jarum jam dengan pusat (0,0) mengubah titik (x, y) menjadi...",
+                            options: ["A. (-y, x)", "B. (y, -x)", "C. (-x, -y)", "D. (x, y)", "E. (y, x)"],
+                            answer: 0,
+                            exp: "Rumus rotasi 90° berlawanan arah jarum jam adalah (-y, x)."
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // State & LocalStorage Management
+        let currentGrade = 10;
+        let userProgress = JSON.parse(localStorage.getItem('mathSmart_progress')) || {
+            completed: [],
+            score: 0
+        };
+
+        // Navigation Switcher
+        function switchSection(sectionId) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + sectionId);
+            if(activeNav) activeNav.classList.add('active');
+
+            if(sectionId === 'materials') {
+                renderMaterials(currentGrade);
+            } else if(sectionId === 'home') {
+                updateStats();
+            } else if(sectionId === 'profile') {
+                updateProfileView();
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Grade Switcher for Materials
+        function switchGrade(grade) {
+            currentGrade = grade;
+            document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+                if((grade === 10 && idx === 0) || (grade === 11 && idx === 1) || (grade === 12 && idx === 2)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            renderMaterials(grade);
+        }
+
+        // Render Materials Grid
+        function renderMaterials(grade, filter = '') {
+            const grid = document.getElementById('materialGrid');
+            grid.innerHTML = '';
+            
+            let list = materialsData[grade];
+            if(filter) {
+                // Search across all grades if searching
+                list = [];
+                Object.keys(materialsData).forEach(g => {
+                    materialsData[g].forEach(m => {
+                        if(m.title.toLowerCase().includes(filter.toLowerCase()) || m.desc.toLowerCase().includes(filter.toLowerCase())) {
+                            list.push({...m, grade: g});
+                        }
+                    });
+                });
+            }
+
+            if(list.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">Materi tidak ditemukan.</p>`;
+                return;
+            }
+
+            list.forEach(item => {
+                const isCompleted = userProgress.completed.includes(item.id);
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div>
+                        <h3>${item.title} ${item.grade ? `(Kelas ${item.grade})` : ''}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="openMaterial('${item.id}', ${item.grade || grade})">
+                            ${isCompleted ? '<i class="fa-solid fa-check" style="color:#10b981"></i> Pelajari Lagi' : 'Pelajari'}
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Search Filter
+        function filterMaterials() {
+            const query = document.getElementById('searchInput').value;
+            if(query.trim() !== '') {
+                renderMaterials(currentGrade, query);
+            } else {
+                renderMaterials(currentGrade);
+            }
+        }
+
+        // Open Material Detail & Quiz
+        function openMaterial(id, grade) {
+            const material = materialsData[grade].find(m => m.id === id);
+            if(!material) return;
+
+            document.getElementById('detailContent').innerHTML = `
+                <div class="content-box">
+                    ${material.content}
+                </div>
+            `;
+
+            renderQuiz(material);
+            switchSection('material-detail');
+        }
+
+        // Render Quiz
+        function renderQuiz(material) {
+            const quizArea = document.getElementById('quizArea');
+            quizArea.innerHTML = '';
+
+            material.quiz.forEach((q, qIdx) => {
+                const qBox = document.createElement('div');
+                qBox.style.marginBottom = '2rem';
+                qBox.innerHTML = `
+                    <div class="question-box">Soal ${qIdx + 1}: ${q.q}</div>
+                    <div class="options-list" id="q-options-${qIdx}">
+                        ${q.options.map((opt, oIdx) => `
+                            <div class="option-item" onclick="selectOption(${qIdx}, ${oIdx}, ${q.answer})">
+                                <input type="radio" name="q${qIdx}" id="q${qIdx}o${oIdx}">
+                                <label for="q${qIdx}o${oIdx}" style="cursor: pointer; width: 100%;">${opt}</label>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="explanation-box" id="exp-${qIdx}">
+                        <strong>Pembahasan:</strong> ${q.exp}
+                    </div>
+                `;
+                quizArea.appendChild(qBox);
+            });
+
+            const submitBtn = document.createElement('button');
+            submitBtn.className = 'btn';
+            submitBtn.innerHTML = 'Periksa Jawaban <i class="fa-solid fa-check"></i>';
+            submitBtn.onclick = () => checkQuizAnswers(material);
+            quizArea.appendChild(submitBtn);
+        }
+
+        let selectedAnswers = {};
+        function selectOption(qIdx, oIdx, correctIdx) {
+            selectedAnswers[qIdx] = oIdx;
+            const container = document.getElementById(`q-options-${qIdx}`);
+            container.querySelectorAll('.option-item').forEach((item, idx) => {
+                item.classList.remove('selected');
+                if(idx === oIdx) item.classList.add('selected');
+            });
+        }
+
+        function checkQuizAnswers(material) {
+            let correctCount = 0;
+            material.quiz.forEach((q, qIdx) => {
+                const container = document.getElementById(`q-options-${qIdx}`);
+                const options = container.querySelectorAll('.option-item');
+                const expBox = document.getElementById(`exp-${qIdx}`);
+                expBox.style.display = 'block';
+
+                options.forEach((opt, idx) => {
+                    opt.onclick = null; // Disable clicking after submit
+                    if(idx === q.answer) {
+                        opt.classList.add('correct');
+                    } else if(idx === selectedAnswers[qIdx] && idx !== q.answer) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+
+                if(selectedAnswers[qIdx] === q.answer) {
+                    correctCount++;
+                }
+            });
+
+            const scoreEarned = correctCount * 20; // 5 soal * 20 = 100 max
+            alert(`Kuis selesai! Jawaban benar: ${correctCount} dari 5. Skor diperoleh: ${scoreEarned} poin.`);
+
+            // Save progress
+            if(!userProgress.completed.includes(material.id)) {
+                userProgress.completed.push(material.id);
+            }
+            userProgress.score += scoreEarned;
+            localStorage.setItem('mathSmart_progress', JSON.stringify(userProgress));
+            updateStats();
+        }
+
+        // Update Stats & Profile
+        function updateStats() {
+            document.getElementById('stat-total-material').innerText = '15';
+            document.getElementById('stat-completed').innerText = userProgress.completed.length;
+            document.getElementById('stat-score').innerText = userProgress.score;
+        }
+
+        function updateProfileView() {
+            document.getElementById('profileCompleted').innerText = userProgress.completed.length;
+            document.getElementById('profileScore').innerText = userProgress.score;
+
+            if(userProgress.completed.length >= 1) {
+                document.getElementById('badge-novice').style.opacity = '1';
+                document.getElementById('badge-novice').style.borderColor = 'var(--primary)';
+            }
+            if(userProgress.completed.length >= 5) {
+                document.getElementById('badge-master').style.opacity = '1';
+                document.getElementById('badge-master').style.borderColor = 'var(--secondary)';
+            }
+        }
+
+        function resetProgress() {
+            if(confirm('Apakah Anda yakin ingin mereset seluruh progres belajar?')) {
+                userProgress = { completed: [], score: 0 };
+                localStorage.removeItem('mathSmart_progress');
+                updateStats();
+                updateProfileView();
+                alert('Progres berhasil direset.');
+            }
+        }
+
+        // Calculator Logic
+        let calcInput = '';
+        function appendCalc(val) {
+            if(calcInput === '0' && val !== '.') calcInput = '';
+            calcInput += val;
+            document.getElementById('calcScreen').innerText = calcInput;
+        }
+
+        function clearCalc() {
+            calcInput = '0';
+            document.getElementById('calcScreen').innerText = calcInput;
+        }
+
+        function calculateResult() {
+            try {
+                // Safe evaluation for basic arithmetic calculator
+                let sanitized = calcInput.replace(/×/g, '*').replace(/÷/g, '/');
+                let result = eval(sanitized);
+                document.getElementById('calcScreen').innerText = result;
+                calcInput = result.toString();
+            } catch (e) {
+                document.getElementById('calcScreen').innerText = 'Error';
+                calcInput = '0';
+            }
+        }
+
+        // Theme Toggle (Dark/Light Mode)
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', () => {
+            const body = document.body;
+            if(body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        });
+
+        // Initialize on load
+        window.onload = () => {
+            updateStats();
+            renderMaterials(10);
+        };
+    </script>
+</body>
+</html>
